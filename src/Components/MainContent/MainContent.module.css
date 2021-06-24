@@ -1,7 +1,18 @@
-import React from "react";
+.contentWrapper_startNow a{
+    position: absolute;
+    left: 230px;
+    top: 410px;
+    margin-top: 10px;
 
-export const MainContent = () => {
-    return <div>
-        
-    </div>
+    text-decoration: none;
+    color: #16DFB5;
+}
+.contentWrapper_startNow a:hover{
+    position: absolute;
+    left: 230px;
+    top: 410px;
+    margin-top: 10px;
+
+    text-decoration: underline;
+    color: #16DFB5;
 }

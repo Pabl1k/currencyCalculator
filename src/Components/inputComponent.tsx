@@ -6,8 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import {MenuItem, Select} from "@material-ui/core";
-import {CurrencyStateType} from "./Components/MainContent/MainContent";
-import {useFormik} from "formik";
+import {CurrencyStateType} from "./MainContent/MainContent";
 
 type InputComponentPropsType = {
     value: string
@@ -15,8 +14,9 @@ type InputComponentPropsType = {
     currency: string
     currencyImage: string
     handleChange: (e: ChangeEvent<{ name?: string | undefined; value: unknown; }>) => void
-    onValueChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
+    onValueChangeHandler?: (e: ChangeEvent<HTMLInputElement>) => void
     option: string
+    disable?: boolean
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,20 +53,12 @@ const useStyles = makeStyles((theme: Theme) =>
 export const InputComponent: React.FC<InputComponentPropsType> = (props) => {
     const classes = useStyles();
 
-    // const formik = useFormik({
-    //     initialValues: {
-    //         email: '',
-    //     },
-    //     onSubmit: values => {
-    //         alert(JSON.stringify(values, null, 2));
-    //     },
-    // });
-
     return (
         <div className={classes.root}>
             <FormControl className={clsx(classes.textField)} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password" className={classes.option}>{props.option}</InputLabel>
                 <OutlinedInput
+                    disabled={props.disable}
                     value={props.value === '0' ? null : props.value}
                     onChange={props.onValueChangeHandler}
                     id="outlined-adornment-password"
@@ -82,7 +74,9 @@ export const InputComponent: React.FC<InputComponentPropsType> = (props) => {
                                     value={props.currency}
                                     onChange={props.handleChange}>
                                     {props.currenciesState.map(currency =>
-                                        <MenuItem key={currency.id} value={currency.currencyName}>{currency.currencyName}</MenuItem>
+                                        <MenuItem key={currency.id}
+                                                  value={currency.currencyName}>{currency.currencyName}
+                                        </MenuItem>
                                     )}
                                 </Select>
                             </FormControl>

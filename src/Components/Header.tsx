@@ -1,7 +1,12 @@
 import React, {useEffect} from "react";
-import {AppBar, makeStyles, Toolbar, Typography, useMediaQuery, useTheme} from "@material-ui/core";
-import logoImg from './img/logo.png';
 import {NavLink} from "react-router-dom";
+import AppBar from "@material-ui/core/AppBar/AppBar";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import {Typography} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+import useTheme from "@material-ui/core/styles/useTheme";
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import {ReactComponent as CompanyLogo} from "../assets/Icons/Logo.svg";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -86,15 +91,14 @@ export const Header = () => {
             <AppBar position="fixed">
                 <Toolbar className={classes.toolbar}>
                     <NavLink to={'/'}>
-                        <img src={logoImg} alt="logo" className={classes.logoImg}/>
+                        <CompanyLogo />
                     </NavLink>
                     {!matches
-                        ? <>
+                        && <>
                             <Typography className={classes.menuItems}>Products</Typography>
                             <Typography className={classes.menuItems}>Resources</Typography>
                             <Typography className={classes.menuItems}>Buy Instantly</Typography>
                         </>
-                        : null
                     }
                 </Toolbar>
             </AppBar>

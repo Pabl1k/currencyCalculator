@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import clsx from 'clsx';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -13,7 +13,7 @@ type InputComponentPropsType = {
     currenciesState: Array<CurrencyStateType>
     currency: string
     currencyImage: string
-    handleChange: (e: ChangeEvent<{ name?: string | undefined; value: unknown; }>) => void
+    handleChange: (e: ChangeEvent<{ name?: string, value: unknown; }>) => void
     onValueChangeHandler?: (e: ChangeEvent<HTMLInputElement>) => void
     option: string
     disable?: boolean
@@ -50,30 +50,39 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const InputComponent: React.FC<InputComponentPropsType> = (props) => {
+export const InputComponent: FC<InputComponentPropsType> = ({
+    value, 
+    currenciesState, 
+    currency, 
+    currencyImage, 
+    handleChange, 
+    onValueChangeHandler, 
+    option,
+    disable,
+}: InputComponentPropsType) => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <FormControl className={clsx(classes.textField)} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" className={classes.option}>{props.option}</InputLabel>
+                <InputLabel htmlFor="outlined-adornment-password" className={classes.option}>{option}</InputLabel>
                 <OutlinedInput
-                    disabled={props.disable}
-                    value={props.value === '0' ? null : props.value}
-                    onChange={props.onValueChangeHandler}
+                    disabled={disable}
+                    value={value === '0' ? null : value}
+                    onChange={onValueChangeHandler}
                     id="outlined-adornment-password"
                     type='number'
                     endAdornment={
                         <InputAdornment position="end">
-                            <img src={props.currencyImage} alt={`${props.currency} currency`}
+                            <img src={currencyImage} alt={`${currency} currency`}
                                  className={classes.imgSize}/>
                             <FormControl className={classes.formControl}>
                                 <Select
                                     disableUnderline
                                     className={classes.selectEmpty}
-                                    value={props.currency}
-                                    onChange={props.handleChange}>
-                                    {props.currenciesState.map(currency =>
+                                    value={currency}
+                                    onChange={handleChange}>
+                                    {currenciesState.map(currency =>
                                         <MenuItem key={currency.id}
                                                   value={currency.currencyName}>{currency.currencyName}
                                         </MenuItem>

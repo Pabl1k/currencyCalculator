@@ -1,21 +1,17 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import style from './MainContent.module.css';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import {
-    Button,
-    CircularProgress,
-    createStyles,
-    makeStyles,
-    Paper,
-    TextField,
-    Theme,
-    Typography,
-    useMediaQuery,
-    useTheme
-} from "@material-ui/core";
 import {InputComponent} from "../inputComponent";
 import {NavLink} from "react-router-dom";
 import {CurrencyAPI} from "../../api/api";
+import {Paper, TextField, Typography} from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import Button from "@material-ui/core/Button/Button";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import {createStyles, Theme} from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import strings from "../../assets/strings";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -272,10 +268,7 @@ export const MainContent = () => {
             other crypto <span className={classes.contentWrapper_textBlock_colorPlus}>online</span>
         </div>
         <div className={classes.contentWrapper_bottomText}>
-            Why bother going through complicated exchanges? Buy cryptocurrency with top payment methods like SEPA
-            bank transfer, Credit and Debit Card, Apple Pay, Mobile balance or Klarna. You can buy Bitcoin, Ethereum
-            or any other popular crypto directly to your personal wallet without making any initial deposits. It's
-            as easy as it gets!
+            {strings.mainText}
         </div>
         <div className={style.contentWrapper_startNow}>
             <NavLink to={'/signUp'}>Start now <ArrowForwardIosIcon className={classes.startNowArrow}/></NavLink>

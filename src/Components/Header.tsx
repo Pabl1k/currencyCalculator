@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {NavLink} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
@@ -81,10 +81,6 @@ export const Header = () => {
     const classes = useStyles();
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("xs"));
-
-    useEffect(() => {
-        document.title = 'Buy, Sell, Manage & Accept Cryptocurrencies - CoinGate';
-    }, [])
 
     return (
         <div className={classes.root}>

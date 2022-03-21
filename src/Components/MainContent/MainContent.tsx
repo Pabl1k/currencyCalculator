@@ -1,17 +1,17 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-import style from './MainContent.module.css';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import {InputComponent} from "../inputComponent";
 import {NavLink} from "react-router-dom";
-import {CurrencyAPI} from "../../api/api";
-import {Paper, TextField, Typography} from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Button from "@material-ui/core/Button/Button";
+import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles, Theme} from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import {InputComponent} from "../inputComponent";
 import strings from "../../assets/strings";
+import style from './MainContent.module.css';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -196,23 +196,15 @@ export const MainContent = () => {
         {id: 3, currencyName: 'LTC'}
     ]
 
-    const [btcEur, setBtcEur] = useState<string>('');
-    const [ltcEur, setLtcEur] = useState<string>('');
-    const [ltcBtc, setLtcBtc] = useState<string>('');
-    CurrencyAPI.getCurrency()
-        .then(res => {
-            setBtcEur(res.data.trader.buy.BTC.EUR)
-            setLtcEur(res.data.trader.buy.LTC.EUR)
-            setLtcBtc(res.data.trader.buy.LTC.BTC)
-        });
+    const btcEur = 37317.36;
+    const ltcEur = 104.28;
+    const ltcBtc = 0.0028;
 
     const [payValue, setPayValue] = useState<string>('');
     const [payCurrency, setPayCurrency] = useState<string>('EUR');
-    const [payCurrencyImage, setPayCurrencyImage] = useState<string>('https://cryptoicons.org/api/color/eur/600/F6921A');
 
     const [buyValue, setBuyValue] = useState<string>('');
     const [buyCurrency, setBuyCurrency] = useState<string>('BTC');
-    const [buyCurrencyImage, setBuyCurrencyImage] = useState<string>('https://cryptoicons.org/api/color/btc/600/F6921A');
 
     let error: string = 'Buy currency and pay currency can not be the same';
 
@@ -248,11 +240,9 @@ export const MainContent = () => {
 
     const payHandleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
         setPayCurrency(e.target.value as string)
-        setPayCurrencyImage(`https://cryptoicons.org/api/color/${(e.target.value as string).toLowerCase()}/600/${(e.target.value as string) === 'LTC' ? '1A56D7' : 'F6921A'}`)
     };
     const buyHandleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
         setBuyCurrency(e.target.value as string)
-        setBuyCurrencyImage(`https://cryptoicons.org/api/color/${(e.target.value as string).toLowerCase()}/600/${(e.target.value as string) === 'LTC' ? '1A56D7' : 'F6921A'}`)
     };
     const payValueChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setPayValue(e.currentTarget.value)
@@ -279,23 +269,18 @@ export const MainContent = () => {
             </div>
             : null}
         <Paper className={classes.mainRectangular}>
-            {btcEur === '' && ltcEur === '' && ltcBtc === '' ?
-                <CircularProgress className={classes.loadingCircular}/> : null}
             <InputComponent
                 value={payValue}
                 currenciesState={currenciesState}
                 currency={payCurrency}
-                currencyImage={payCurrencyImage}
                 handleChange={payHandleChange}
                 onValueChangeHandler={payValueChangeHandler}
                 option='Pay'
-                disable={btcEur === '' && ltcEur === '' && ltcBtc === ''}
             />
             <InputComponent
                 value={buyValue}
                 currenciesState={currenciesState}
                 currency={buyCurrency}
-                currencyImage={buyCurrencyImage}
                 handleChange={buyHandleChange}
                 option='Buy'
             />

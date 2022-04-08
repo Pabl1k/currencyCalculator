@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/currencyCalculator/static/css/main.8c30aac4.chunk.css",
+    "main.js": "/currencyCalculator/static/js/main.fa45e145.chunk.js",
+    "main.js.map": "/currencyCalculator/static/js/main.fa45e145.chunk.js.map",
+    "runtime-main.js": "/currencyCalculator/static/js/runtime-main.6ef9670f.js",
+    "runtime-main.js.map": "/currencyCalculator/static/js/runtime-main.6ef9670f.js.map",
+    "static/js/2.999bd9ed.chunk.js": "/currencyCalculator/static/js/2.999bd9ed.chunk.js",
+    "static/js/2.999bd9ed.chunk.js.map": "/currencyCalculator/static/js/2.999bd9ed.chunk.js.map",
+    "index.html": "/currencyCalculator/index.html",
+    "static/css/main.8c30aac4.chunk.css.map": "/currencyCalculator/static/css/main.8c30aac4.chunk.css.map",
+    "static/js/2.999bd9ed.chunk.js.LICENSE.txt": "/currencyCalculator/static/js/2.999bd9ed.chunk.js.LICENSE.txt",
+    "static/media/Logo.9c48b11c.svg": "/currencyCalculator/static/media/Logo.9c48b11c.svg",
+    "static/media/btc.78be76cd.svg": "/currencyCalculator/static/media/btc.78be76cd.svg",
+    "static/media/eur.d95346c9.svg": "/currencyCalculator/static/media/eur.d95346c9.svg",
+    "static/media/ltc.6bcd978c.svg": "/currencyCalculator/static/media/ltc.6bcd978c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ef9670f.js",
+    "static/js/2.999bd9ed.chunk.js",
+    "static/css/main.8c30aac4.chunk.css",
+    "static/js/main.fa45e145.chunk.js"
+  ]
+}
